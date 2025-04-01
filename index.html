@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Play Video</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        }
+        .start-screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            cursor: pointer;
+            z-index: 2;
+        }
+        video {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="start-screen" onclick="startVideo()">Start Game</div>
+    <video id="video" onended="closeTab()">
+        <source src="assets/mistiknodevideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <script>
+        function startVideo() {
+            document.querySelector('.start-screen').style.display = 'none';
+            let video = document.getElementById('video');
+            video.style.display = 'block';
+            video.volume = 1.0;
+            video.play();
+        }
+        
+        function closeTab() {
+            window.close();
+        }
+    </script>
+</body>
+</html>
