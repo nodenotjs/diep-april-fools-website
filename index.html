@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto-Play Video</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
+        
         body {
             margin: 0;
             overflow: hidden;
@@ -23,9 +25,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 2em;
+            font-size: 4em;
+            font-family: 'Cinzel Decorative', cursive;
             cursor: pointer;
             z-index: 2;
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-out {
+            opacity: 0;
+            transform: translateY(-50px);
         }
         video {
             display: none;
@@ -43,11 +51,24 @@
     </video>
     <script>
         function startVideo() {
-            document.querySelector('.start-screen').style.display = 'none';
+            let startScreen = document.querySelector('.start-screen');
+            startScreen.classList.add('fade-out');
+            setTimeout(() => { startScreen.style.display = 'none'; }, 1000);
+            
             let video = document.getElementById('video');
             video.style.display = 'block';
             video.volume = 1.0;
             video.play();
+            
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
         }
         
         function closeTab() {
