@@ -34,6 +34,7 @@
             cursor: pointer;
             z-index: 2;
             transition: opacity 1s ease-out, transform 1s ease-out;
+            text-align: center;
         }
 
         .fade-out {
@@ -51,7 +52,7 @@
 </head>
 
 <body>
-    <div class="start-screen" onclick="startVideo()">Start Dieppo</div>
+    <div class="start-screen" onclick="startVideo()">Click to<br>Start Dieppo</div>
     <video id="video" onended="closeTab()">
         <source src="assets/mistiknodevideo.mp4" type="video/mp4">
         Your browser does not support the video tag.
